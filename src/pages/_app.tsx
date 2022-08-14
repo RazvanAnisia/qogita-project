@@ -1,9 +1,12 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
+import { AppProvider } from "../contexts/index";
 
-import '../global.css';
+import "../global.css";
 
 const QogitaApp = ({ Component, pageProps }: AppProps): JSX.Element => (
-  <Component {...pageProps} />
+  <AppProvider>
+    <Component {...pageProps} />
+  </AppProvider>
 );
 
 export default QogitaApp;
