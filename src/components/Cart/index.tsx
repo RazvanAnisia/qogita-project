@@ -1,23 +1,23 @@
-import { Button, InputNumber, Space, Typography } from "antd";
+import { Button, InputNumber, Typography } from "antd";
 import { useContext } from "react";
 import { AppContext } from "../../contexts";
 import { List } from "antd";
 import React from "react";
-import "antd/dist/antd.css";
 import { changeProductQuantity, removeFromCart } from "../../actions/cart";
+import { calculateTotal } from "../../helpers";
+import { CartProduct } from "../../types";
 
 const { Paragraph } = Typography;
 
-const Cart = () => {
-  const { state, dispatch } = useContext(AppContext);
-  const { productsInCart } = state;
+interface ICartProps {
+  productsInCart: CartProduct[];
+}
+
+const Cart = ({ productsInCart }: ICartProps) => {
+  const { dispatch } = useContext(AppContext);
 
   if (productsInCart.length > 0) {
-    const cartTotal = productsInCart.reduce(
-      (previous, current) =>
-        (previous += current.recommendedRetailPrice * current.quantity),
-      0
-    );
+    const cartTotal = calculateTotal(productsInCart);
 
     const handleRemoveProduct = (id: string) => {
       dispatch(removeFromCart(id));
@@ -80,7 +80,7 @@ const Cart = () => {
         ></List>
         <div className="pt-8 p-6 w-1/3 ">
           <Paragraph>Summary</Paragraph>
-          <Paragraph strong>Total: {`€${cartTotal.toFixed(2)}`}</Paragraph>
+          <Paragraph strong>Total: {`€${cartTotal}`}</Paragraph>
         </div>
       </div>
     );

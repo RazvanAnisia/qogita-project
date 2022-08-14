@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useContext } from "react";
 import { AppContext } from "../../contexts";
+import "antd/dist/antd.css";
 
 type Props = {
   children: React.ReactNode;

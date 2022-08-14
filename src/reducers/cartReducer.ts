@@ -1,5 +1,5 @@
+import { InitialStateType } from "../types";
 import { Action } from "./../actions/cart";
-import { InitialStateType } from "./../contexts/index";
 
 export const cartReducer = (
   state: InitialStateType,
