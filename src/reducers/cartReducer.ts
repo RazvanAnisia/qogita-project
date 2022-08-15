@@ -14,7 +14,8 @@ export const cartReducer = (
       // if the product is already in the cart just increment the quantity
       if (inCartIndex >= 0) {
         const productsCopy = state.productsInCart.slice();
-        productsCopy[inCartIndex].quantity = +1;
+        productsCopy[inCartIndex].quantity =
+          productsCopy[inCartIndex].quantity + 1;
 
         return {
           ...state,
