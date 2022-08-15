@@ -14,8 +14,16 @@ const AppContext = createContext<{
   dispatch: () => null,
 });
 
-const AppProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, initialState);
+interface IAppProviderProps {
+  children: React.ReactChild;
+  desiredState?: InitialStateType;
+}
+
+const AppProvider = ({ children, desiredState }: IAppProviderProps) => {
+  const [state, dispatch] = useReducer(
+    cartReducer,
+    desiredState || initialState
+  );
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

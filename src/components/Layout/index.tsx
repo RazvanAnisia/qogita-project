@@ -26,7 +26,7 @@ const Layout = ({ children }: Props) => {
               <Link href="/cart">
                 <a className="underline">
                   Your Cart <ShoppingCartOutlined />
-                  <span>
+                  <span data-testid="Navigation.ProductCount">
                     {state.productsInCart.reduce(
                       (previous, current) => previous + current.quantity,
                       0
