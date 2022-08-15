@@ -47,7 +47,6 @@ export const cartReducer = (
 
       const copy = state.productsInCart.slice();
       copy[inCartIndex].quantity = action.payload.quantity;
-
       return {
         ...state,
         productsInCart: copy,

@@ -1,8 +1,9 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import Cart from "./";
 import { CartProduct } from "../../types";
+import * as actions from "../../actions/cart";
 
 export const mockCartProducts: CartProduct[] = [
   {
@@ -28,6 +29,9 @@ export const mockCartProducts: CartProduct[] = [
     quantity: 5,
   },
 ];
+
+jest.spyOn(actions, "removeFromCart");
+jest.spyOn(actions, "changeProductQuantity");
 
 describe("components/Cart", () => {
   it("should render a message that there are no products in shopping cart", () => {
@@ -58,5 +62,37 @@ describe("components/Cart", () => {
     expect(getByText("Summary")).toBeInTheDocument();
     expect(getByText(/Total/i)).toBeInTheDocument();
     expect(getByText(/€144.94/i)).toBeInTheDocument();
+  });
+
+  it("should render the remove product button", () => {
+    const { getByTestId } = render(<Cart productsInCart={mockCartProducts} />);
+
+    const removeProductBtn = getByTestId(
+      `Remove.Button${mockCartProducts[0].gtin}`
+    );
+
+    expect(removeProductBtn).toBeInTheDocument();
+
+    fireEvent.click(removeProductBtn);
+
+    expect(actions.removeFromCart).toHaveBeenCalledWith(
+      mockCartProducts[0].gtin
+    );
+  });
+  it("should render the product quantity input", () => {
+    const { getByTestId } = render(<Cart productsInCart={mockCartProducts} />);
+
+    const productQuantityInput = getByTestId(
+      `Input.Number${mockCartProducts[0].gtin}`
+    );
+
+    expect(productQuantityInput).toBeInTheDocument();
+
+    fireEvent.input(productQuantityInput, { target: { value: "2" } });
+
+    expect(actions.changeProductQuantity).toHaveBeenCalledWith(
+      mockCartProducts[0].gtin,
+      2
+    );
   });
 });

@@ -54,6 +54,7 @@ const Cart = ({ productsInCart }: ICartProps) => {
                   defaultValue={item.quantity}
                   addonBefore={"Quantity"}
                   onBlur={(e) => handleInputBlur(e, item.gtin)}
+                  data-testid={`Input.Number${item.gtin}`}
                   onChange={(quantity) =>
                     handleQuantityChange(quantity, item.gtin)
                   }
@@ -62,6 +63,7 @@ const Cart = ({ productsInCart }: ICartProps) => {
                   size="small"
                   type="primary"
                   onClick={() => handleRemoveProduct(item.gtin)}
+                  data-testid={`Remove.Button${item.gtin}`}
                 >
                   Remove
                 </Button>,
