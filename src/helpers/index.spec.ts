@@ -1,5 +1,5 @@
-import { mockCartProducts } from "../components/Cart/index.spec";
 import { calculateTotal } from "./";
+import { mockCartProducts } from "./testing";
 
 describe("helpers/calculateTotal", () => {
   it("should calculate total for all products depending on price and quantity", () => {

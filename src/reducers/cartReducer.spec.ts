@@ -1,34 +1,11 @@
-import { mockCartProducts } from "../components/Cart/index.spec";
+import { mockCartProducts, mockProducts } from "../helpers/testing";
 import {
   addToCart,
   changeProductQuantity,
   removeFromCart,
 } from "./../actions/cart";
-import { CartProduct, InitialStateType, Product } from "./../types";
+import { InitialStateType } from "./../types";
 import { cartReducer } from "./cartReducer";
-
-const mockProducts: Product[] = [
-  {
-    name: "Parodontax Duplo Herbal Fresh 75ml",
-    gtin: "5054563079435",
-    recommendedRetailPrice: 29.99,
-    recommendedRetailPriceCurrency: "EUR",
-    imageUrl:
-      "https://images.qogita.com/files/images/variants/aB9r5isuPDUTTD3nLNsXvQ.jpg",
-    brandName: "Parodontax",
-    categoryName: "Toothpaste",
-  },
-  {
-    name: "Poseidon The Black Men Edt Vapo 150 Ml - Beauty & Health",
-    gtin: "8411047151242",
-    recommendedRetailPrice: 22.99,
-    recommendedRetailPriceCurrency: "EUR",
-    imageUrl:
-      "https://images.qogita.com/files/images/variants/co8e7Y9gf272e2W2LgA6fj.jpg",
-    brandName: "Instituto Espanol",
-    categoryName: "Men's Perfume",
-  },
-];
 
 describe("reducers/cartReducer", () => {
   it("cartReducer should take ADD_PRODUCT and return new state object with new product", () => {

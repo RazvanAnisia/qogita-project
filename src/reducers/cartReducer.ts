@@ -13,12 +13,12 @@ export const cartReducer = (
 
       // if the product is already in the cart just increment the quantity
       if (inCartIndex >= 0) {
-        const copy = [...state.productsInCart];
-        copy[inCartIndex].quantity = copy[inCartIndex].quantity + 1;
+        const productsCopy = state.productsInCart.slice();
+        productsCopy[inCartIndex].quantity = +1;
 
         return {
           ...state,
-          productsInCart: copy,
+          productsInCart: productsCopy,
         };
       }
 
@@ -45,11 +45,11 @@ export const cartReducer = (
         (product) => product.gtin === action.payload.id
       );
 
-      const copy = state.productsInCart.slice();
-      copy[inCartIndex].quantity = action.payload.quantity;
+      const productsCopy = state.productsInCart.slice();
+      productsCopy[inCartIndex].quantity = action.payload.quantity;
       return {
         ...state,
-        productsInCart: copy,
+        productsInCart: productsCopy,
       };
   }
 };

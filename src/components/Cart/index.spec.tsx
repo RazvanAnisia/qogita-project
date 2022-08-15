@@ -2,33 +2,8 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import Cart from "./";
-import { CartProduct } from "../../types";
 import * as actions from "../../actions/cart";
-
-export const mockCartProducts: CartProduct[] = [
-  {
-    name: "Parodontax Duplo Herbal Fresh 75ml",
-    gtin: "5054563079435",
-    recommendedRetailPrice: 29.99,
-    recommendedRetailPriceCurrency: "EUR",
-    imageUrl:
-      "https://images.qogita.com/files/images/variants/aB9r5isuPDUTTD3nLNsXvQ.jpg",
-    brandName: "Parodontax",
-    categoryName: "Toothpaste",
-    quantity: 1,
-  },
-  {
-    name: "Poseidon The Black Men Edt Vapo 150 Ml - Beauty & Health",
-    gtin: "8411047151242",
-    recommendedRetailPrice: 22.99,
-    recommendedRetailPriceCurrency: "EUR",
-    imageUrl:
-      "https://images.qogita.com/files/images/variants/co8e7Y9gf272e2W2LgA6fj.jpg",
-    brandName: "Instituto Espanol",
-    categoryName: "Men's Perfume",
-    quantity: 5,
-  },
-];
+import { mockCartProducts } from "../../helpers/testing";
 
 jest.spyOn(actions, "removeFromCart");
 jest.spyOn(actions, "changeProductQuantity");
