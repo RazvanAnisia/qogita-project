@@ -3,11 +3,12 @@
 I have tried to meet all the requirements listed in the original Readme in the aproximate given timeframe.
 For this purpose:
 
-- I've leveraged [https://ant.design/](ant-d) as a UI library
+- I've leveraged [ant-d](https://ant.design/) as a UI library
 - Used React's useReducer() hook for state management: considering the small scale of the app I considered it was a good solution, but for a production grade application I would recommend something like Redux which offers a lot of other advantages (but requires a lot of boilerplace)
-- used [https://usehooks-ts.com/react-hook/use-fetch](use-fetch) hook for fetching data from the api, chose this for simplicity and to keep the application lean but for larger projects could use a package like axios
+- used [use-fetch](https://usehooks-ts.com/react-hook/use-fetch) hook for fetching data from the api, chose this for simplicity and to keep the application lean but for larger projects could use a package like axios
 - I did not end up using /products/[gtin] endpoint as it wasn't specified directly in the requirements, and the payload it delivered did not offer any extra information about a particular product (the main /products endpoint has the same information for a particular product) so if there was a need to navigate to products/id in the browser we could have used the main /products endpoint.
-- I have setup unit tests with Jest + [https://testing-library.com/](react-testing-library) and tried to get some decent coverage for the more important parts of the application, but these could be significantly improved
+- I have setup unit tests with Jest + [react-testing-library](https://testing-library.com/) and tried to get some decent coverage for the more important parts of the application, but these could be significantly improved
+- Regarding the styling of the application, it is very minimal and rough at this point and it could be greatly improved, together with its responsiveness (tablet, mobile view)
 
 ### Setup
 
@@ -68,7 +69,3 @@ The `/products/[gtin]` endpoint accepts `GET` requests and will return a product
 ##### Bonus requirements
 
 - Customers should be able to change the quantity of a particular product in their shopping cart.
-
-## Getting started
-
-The existing code includes a development environment, and an [API](#api) with product data for you to interact with. The relevant API response types can be found in [src/types.ts](src/types.ts). Please do not use `data/products.json` directly.
