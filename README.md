@@ -1,22 +1,55 @@
-# Qogita's Front-End Technical Challenge.
+## Approach
 
-Congratulations on reaching the technical challenge stage of the interview process at Qogita.
+I have tried to meet all the requirements listed in the original Readme in the aproximate given timeframe.
+For this purpose:
 
-We are excited to potentially have you join the Engineering team, where you will work alongside brilliant people to build a revolutionary global wholesale B2B platform.
+- I've leveraged [https://ant.design/](ant-d) as a UI library
+- Used React's useReducer() hook for state management: considering the small scale of the app I considered it was a good solution, but for a production grade application I would recommend something like Redux which offers a lot of other advantages (but requires a lot of boilerplace)
+- used [https://usehooks-ts.com/react-hook/use-fetch](use-fetch) hook for fetching data from the api, chose this for simplicity and to keep the application lean but for larger projects could use a package like axios
+- I did not end up using /products/[gtin] endpoint as it wasn't specified directly in the requirements, and the payload it delivered did not offer any extra information about a particular product (the main /products endpoint has the same information for a particular product) so if there was a need to navigate to products/id in the browser we could have used the main /products endpoint.
+- I have setup unit tests with Jest + [https://testing-library.com/](react-testing-library) and tried to get some decent coverage for the more important parts of the application, but these could be significantly improved
 
-## Background
+### Setup
 
-This challenge is built around the front-end stack we use at Qogita – [TypeScript](https://www.typescriptlang.org/), [React](https://reactjs.org/), [Next.js](https://nextjs.org/), and [Tailwind CSS](https://tailwindcss.com/).
+```sh
+npm install
+```
 
-You are expected to use the tools and techniques are you are most comfortable with to produce good quality code that can be understood by engineers of varying experience.
+### Running locally
 
-**Please address the functional requirements listed in the task below, and any non-functional requirements you see as appropriate.**
+#### Development
 
-## Task – Shopping Cart
+Start the project in development mode.
 
-Your task is to expand this project to display products, and allow customers to add them to a shopping cart. You may use third party libraries to assist you. We expect you to prioritise the usability of your user-interface over how pretty it looks.
+```sh
+npm run dev
+```
 
-This task should take 3-4 hours to complete, and you will be given a week to do this. You should commit your code to a repository of your choice, and then share this with us. Please also document any assumptions you make.
+#### Production
+
+Build and start the project in production mode.
+
+```sh
+npm start
+```
+
+#### Unit Tests
+
+```sh
+npm run test
+```
+
+## API
+
+The API can be interacted with via `http://localhost:3000/api` and has the following endpoints:
+
+#### `/products`
+
+The `/products` endpoint accepts `GET` requests and will return the first page of 20 products. To retrieve a different page of 20 products, you can pass the `page` query parameter (e.g. `/products?page=2`).
+
+#### `/products/[gtin]`
+
+The `/products/[gtin]` endpoint accepts `GET` requests and will return a product matching the GTIN (e.g. `/products/8005610625720`). If no product is found, the API will respond with a `404` status.
 
 ### Requirements
 
@@ -39,40 +72,3 @@ This task should take 3-4 hours to complete, and you will be given a week to do 
 ## Getting started
 
 The existing code includes a development environment, and an [API](#api) with product data for you to interact with. The relevant API response types can be found in [src/types.ts](src/types.ts). Please do not use `data/products.json` directly.
-
-### Setup
-
-```sh
-cd frontend-challenge
-npm install
-```
-
-### Running locally
-
-#### Development
-
-Start the project in development mode.
-
-```sh
-npm run dev
-```
-
-#### Production
-
-Build and start the project in production mode.
-
-```sh
-npm start
-```
-
-## API
-
-The API can be interacted with via `http://localhost:3000/api` and has the following endpoints:
-
-#### `/products`
-
-The `/products` endpoint accepts `GET` requests and will return the first page of 20 products. To retrieve a different page of 20 products, you can pass the `page` query parameter (e.g. `/products?page=2`).
-
-#### `/products/[gtin]`
-
-The `/products/[gtin]` endpoint accepts `GET` requests and will return a product matching the GTIN (e.g. `/products/8005610625720`). If no product is found, the API will respond with a `404` status.
